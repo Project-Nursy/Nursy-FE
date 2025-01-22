@@ -1,21 +1,19 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
-import LoginPage from './test/login';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import SignupPage from './test/signUp';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
+import SignUpPage from './pages/SignUpPage';
+import MainPage from './pages/MainPage';
+import Header from './components/Header';
 
 function App() {
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<LoginPage />}></Route>
-          <Route path="/signUp" element={<SignupPage />}></Route>
-        </Routes>
-      </BrowserRouter>
-    </>
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="/home" element={<MainPage />} />
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+      </Routes>
+    </Router>
   );
 }
 
