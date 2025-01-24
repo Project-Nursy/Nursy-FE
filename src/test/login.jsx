@@ -1,17 +1,15 @@
-import { Link } from "lucide-react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from 'lucide-react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 export default function LoginPage() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            로그인
-          </h2>
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">로그인</h2>
         </div>
         <form className="mt-8 space-y-6">
           <input type="hidden" name="remember" defaultValue="true" />
@@ -63,9 +61,7 @@ export default function LoginPage() {
               <div className="w-full border-t border-gray-300" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-gray-50 text-gray-500">
-                Or continue with
-              </span>
+              <span className="px-2 bg-gray-50 text-gray-500">Or continue with</span>
             </div>
           </div>
           <div className="mt-6 grid grid-cols-2 gap-3">
@@ -88,7 +84,7 @@ export default function LoginPage() {
           </div>
         </div>
         <div className="text-center">
-          <button onClick={navigate("/signUp")}>회원가입</button>
+          <button onClick={navigate('/signUp')}>회원가입</button>
         </div>
       </div>
     </div>

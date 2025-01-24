@@ -4,6 +4,7 @@ import MainPage from '../pages/MainPage';
 import MainLayout from '../layout/MainLayout';
 import CommonLayout from '../layout/CommonLayout';
 import SignUpPage from '../pages/SignUpPage';
+import SelectWardPage from '../pages/SelectWardPage';
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '', // 기본 경로, 즉 /main
-        element: <MainPage />, // MainPage를 Outlet으로 렌더링
+        element: <SelectWardPage />, // MainPage를 Outlet으로 렌더링
       },
     ],
   },

@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import apiClient from '../api/axios';
+import { UserContext } from '../contexts/UserContext';
 
 function LoginPage() {
   const [form, setForm] = useState({ userIdentifier: '', password: '' });
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { user, setUser } = useContext(UserContext);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -15,11 +17,12 @@ function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await apiClient.post('/login', form);
+      const response = await apiClient.post('/auth/login', form);
       const { accessToken } = response.data;
       localStorage.setItem('accessToken', accessToken); // JWT 저장
       setError('');
-      navigate('/home'); // 로그인 후 메인 페이지로 이동
+
+      navigate('/main'); // 로그인 후 메인 페이지로 이동
     } catch (err) {
       setError(err.response?.data || '로그인에 실패했습니다. 다시 시도해주세요.');
     }
@@ -45,7 +48,10 @@ function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">로그인</h2>
+          <h2 className="text-center text-6xl font-extrabold text-sky-600 hover:text-sky-500 transition-colors">
+            Nursy
+          </h2>
+          {/* <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">로그인</h2> */}
           {error && <p style={{ color: 'red' }}>{error}</p>}
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
@@ -60,7 +66,7 @@ function LoginPage() {
                 name="userIdentifier"
                 type="text"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-sky-500 focus:border-sky-500 focus:z-10 sm:text-sm"
                 placeholder="사용자 이름"
                 value={form.userIdentifier}
                 onChange={handleChange}
@@ -75,7 +81,7 @@ function LoginPage() {
                 name="password"
                 type="password"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-sky-500 focus:border-sky-500 focus:z-10 sm:text-sm"
                 placeholder="비밀번호"
                 value={form.password}
                 onChange={handleChange}
@@ -86,7 +92,7 @@ function LoginPage() {
           <div>
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-sky-600 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
             >
               로그인
             </button>
@@ -102,7 +108,7 @@ function LoginPage() {
             </div>
           </div>
           <div className="mt-6 grid grid-cols-2 gap-3">
-            <div>
+            {/* <div>
               <button
                 //onClick={() => signIn("naver", { callbackUrl: "/" })}
                 className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
@@ -117,12 +123,17 @@ function LoginPage() {
               >
                 카카오로 로그인
               </button>
-            </div>
+            </div>*/}
           </div>
         </div>
-        {/* <div className="text-center">
-          <button onClick={navigate('/signUp')}>회원가입</button>
-        </div> */}
+        <div>
+          <button
+            onClick={() => navigate('/signup')}
+            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-sky-600 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
+          >
+            회원가입
+          </button>
+        </div>
       </div>
     </div>
   );
