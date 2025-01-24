@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-  baseURL: 'http://localhost:8080/api/auth',
+  baseURL: 'http://localhost:8080/api',
   withCredentials: true, // RefreshToken 쿠키를 위해 설정
 });
 apiClient.interceptors.request.use((config) => {
