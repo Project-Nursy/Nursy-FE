@@ -1,10 +1,13 @@
 import { createBrowserRouter } from 'react-router-dom';
 import LoginPage from '../pages/LoginPage';
-import MainPage from '../pages/MainPage';
+// import MainPage from '../pages/MainPage';
 import MainLayout from '../layout/MainLayout';
 import CommonLayout from '../layout/CommonLayout';
 import SignUpPage from '../pages/SignUpPage';
 import SelectWardPage from '../pages/SelectWardPage';
+import WardMainPage from '../pages/WardMainPage';
+import WardSettingsPage from '../pages/WardSettingsPage';
+import GenerateSchedulePage from '../pages/GenerateSchedulePage';
 
 const router = createBrowserRouter([
   {
@@ -30,7 +33,20 @@ const router = createBrowserRouter([
   {
     path: '/ward',
     element: <CommonLayout />,
-    children: [{}, {}, {}],
+    children: [
+      {
+        path: '', // 기본 경로, 즉 /ward
+        element: <WardMainPage />, // 간호사 관리 페이지
+      },
+      {
+        path: 'setting',
+        element: <WardSettingsPage />,
+      },
+      {
+        path: 'generate',
+        element: <GenerateSchedulePage />,
+      },
+    ],
   },
 ]);
 export default router;
