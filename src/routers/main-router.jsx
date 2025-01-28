@@ -43,7 +43,7 @@ const router = createBrowserRouter([
         element: <WardSettingsPage />,
       },
       {
-        path: 'generate',
+        path: 'schedule',
         element: <GenerateSchedulePage />,
       },
     ],

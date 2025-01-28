@@ -22,7 +22,7 @@ export default function SideBar({ ward }) {
         </li>
         <li>
           <button
-            onClick={() => navigate('/ward/generate', { state: { ward } })}
+            onClick={() => navigate('/ward/schedule', { state: { ward } })}
             className="w-full text-left px-4 py-2 bg-white rounded-lg shadow-md hover:bg-sky-100 transition-colors text-gray-700 font-medium"
           >
             근무표 생성
