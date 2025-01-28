@@ -98,7 +98,7 @@ function SignUpPage() {
     try {
       await apiClient.post('/auth/join', form);
       setError('');
-      navigate('/main'); // 회원가입 후 메인 페이지로 이동
+      navigate('/'); // 회원가입 후 메인 페이지로 이동
     } catch (err) {
       setError(err.response?.data || '회원가입에 실패했습니다. 다시 시도해주세요.');
     }
